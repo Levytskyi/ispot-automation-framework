@@ -34,7 +34,7 @@ public class HomePage {
         $(Selector.AUTH_REGISTRATION_PAGE.getSelector()).shouldBe(clickable).click();
     }
 
-    public void setValueInSearchField(String productToSearch) {
+    public void setSearchText(String productToSearch) {
         $(Selector.SEARCH_FIELD.getSelector()).shouldBe(visible).setValue(productToSearch);
     }
 

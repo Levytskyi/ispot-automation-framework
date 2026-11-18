@@ -16,7 +16,7 @@ public class ProductSortingTest extends BaseTest {
         String sortBy = "cheaperFirst";
 
         HomePage homePage = new HomePage();
-        homePage.setValueInSearchField(productToSearch);
+        homePage.setSearchText(productToSearch);
         homePage.clickSearchButton();
 
         ProductSearchPage productSearchPage = new ProductSearchPage();

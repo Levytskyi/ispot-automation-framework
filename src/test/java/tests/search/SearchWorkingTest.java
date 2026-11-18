@@ -15,7 +15,7 @@ public class SearchWorkingTest extends BaseTest {
         String productToSearch = "Apple MacBook Neo";
 
         HomePage homePage = new HomePage();
-        homePage.setValueInSearchField(productToSearch);
+        homePage.setSearchText(productToSearch);
         homePage.clickSearchButton();
 
         ProductSearchPage productSearchPage = new ProductSearchPage();
