@@ -13,7 +13,10 @@ public class ProductSearchPage {
         PRODUCT_PRICE("span.rm-module-price"),
         SORT("#input-sort"),
         ADD_TO_WISHLIST("button.wishlist"),
-        WISHLIST_COUNTER("span.oct-fixed-bar-wishlist-quantity");
+        WISHLIST_COUNTER("span.oct-fixed-bar-wishlist-quantity"),
+        QUICK_VIEW("button.popup-view"),
+        QUICK_VIEW_TITLE("#rm-quickview"),
+        LOAD_MORE("button.oct-load-more-button");
 
         private final String selector;
 
@@ -30,6 +33,13 @@ public class ProductSearchPage {
         return $$(Selector.PRODUCT_NAME.getSelector())
                 .shouldHave(sizeGreaterThan(0))
                 .texts();
+    }
+
+    public String getProductName(int productIndex) {
+        return $$(Selector.PRODUCT_NAME.getSelector())
+                .shouldHave(sizeGreaterThan(productIndex - 1))
+                .get(productIndex - 1)
+                .getText();
     }
 
     public List<Integer> getProductsPrices() {
@@ -74,5 +84,38 @@ public class ProductSearchPage {
                 .shouldNotHave(exactText(String.valueOf(previousValue)))
                 .getText()
                 .transform(e -> Integer.parseInt(e));
+    }
+
+    public void openSelectedProductQuickView(int productIndex) {
+        $$(Selector.QUICK_VIEW.getSelector())
+                .shouldHave(sizeGreaterThan(productIndex - 1))
+                .get(productIndex - 1)
+                .hover()
+                .click();
+    }
+
+    public String getQuickViewTitle() {
+        return $(Selector.QUICK_VIEW_TITLE.getSelector())
+                .should(visible)
+                .getText();
+    }
+
+    public int getVisibleProductQuantity() {
+        return $$(Selector.PRODUCT_CARD.getSelector())
+                .shouldHave(sizeGreaterThan(0))
+                .size();
+    }
+    public int getVisibleProductQuantity(int previousQuantity) {
+        return $$(Selector.PRODUCT_CARD.getSelector())
+                .shouldHave(sizeGreaterThan(previousQuantity))
+                .size();
+    }
+
+    public void loadMoreProducts() {
+        $(Selector.LOAD_MORE.getSelector())
+                .should(visible)
+                .scrollIntoCenter()
+                .shouldBe(clickable)
+                .click();
     }
 }

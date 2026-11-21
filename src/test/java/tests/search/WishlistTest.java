@@ -24,7 +24,8 @@ public class WishlistTest extends BaseTest {
 
         int counterAfterAdding = productSearchPage.getWishlistCounterValue(counterBeforeAdding);
 
-        Assert.assertEquals(counterAfterAdding,
+        Assert.assertEquals(
+                counterAfterAdding,
                 counterBeforeAdding + 1,
                 "The wishlist counter didn't increase"
         );
