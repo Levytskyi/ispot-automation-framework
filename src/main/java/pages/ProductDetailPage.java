@@ -7,7 +7,9 @@ import static com.codeborne.selenide.Selenide.$$;
 public class ProductDetailPage {
     public enum Selector {
         TITLE_TEXT("div.rm-product-title>h1"),
-        PRODUCT_OPTION("div.hcol-attribute");
+        PRODUCT_OPTION("div.hcol-attribute"),
+        INCREASE_QUANTITY_BUTTON("button.rm-product-quantity-btn-plus"),
+        PRODUCT_PRICE("div.rm-product-center-price");
 
         private final String selector;
 
@@ -28,7 +30,7 @@ public class ProductDetailPage {
 
     public String getTitleText(String previousValue) {
         return $(Selector.TITLE_TEXT.getSelector())
-                .shouldNotHave(value(previousValue))
+                .shouldNotHave(exactText(previousValue))
                 .getText();
     }
 
@@ -40,13 +42,20 @@ public class ProductDetailPage {
     }
 
     public void increaseProductQuantity() {
-        $("button.rm-product-quantity-btn-plus")
+        String previousPrice = $(Selector.PRODUCT_PRICE.getSelector())
+                .shouldBe(visible)
+                .getText();
+
+        $(Selector.INCREASE_QUANTITY_BUTTON.getSelector())
                 .shouldBe(clickable)
                 .click();
+
+        $(Selector.PRODUCT_PRICE.getSelector())
+                .shouldNotHave(exactText(previousPrice));
     }
 
     public int getProductPrice() {
-        String price = $("div.rm-product-center-price")
+        String price = $(Selector.PRODUCT_PRICE.getSelector())
                 .shouldBe(visible)
                 .getText()
                 .replace(" ", "")
