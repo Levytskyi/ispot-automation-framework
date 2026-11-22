@@ -105,6 +105,7 @@ public class ProductSearchPage {
                 .shouldHave(sizeGreaterThan(0))
                 .size();
     }
+
     public int getVisibleProductQuantity(int previousQuantity) {
         return $$(Selector.PRODUCT_CARD.getSelector())
                 .shouldHave(sizeGreaterThan(previousQuantity))
@@ -122,7 +123,7 @@ public class ProductSearchPage {
     public void openSelectedProductDetailPage(int productIndex) {
         $$(Selector.PRODUCT_NAME.getSelector())
                 .shouldHave(sizeGreaterThanOrEqual(productIndex - 1))
-                .get(productIndex)
+                .get(productIndex - 1)
                 .click();
     }
 }
