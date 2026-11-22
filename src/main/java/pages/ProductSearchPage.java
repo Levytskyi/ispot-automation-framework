@@ -118,4 +118,11 @@ public class ProductSearchPage {
                 .shouldBe(clickable)
                 .click();
     }
+
+    public void openSelectedProductDetailPage(int productIndex) {
+        $$(Selector.PRODUCT_NAME.getSelector())
+                .shouldHave(sizeGreaterThanOrEqual(productIndex - 1))
+                .get(productIndex)
+                .click();
+    }
 }
