@@ -9,7 +9,9 @@ public class ProductDetailPage {
         TITLE_TEXT("div.rm-product-title>h1"),
         PRODUCT_OPTION("div.hcol-attribute"),
         INCREASE_QUANTITY_BUTTON("button.rm-product-quantity-btn-plus"),
-        PRODUCT_PRICE("div.rm-product-center-price");
+        PRODUCT_PRICE("div.rm-product-center-price"),
+        CART_PRODUCT_NAME("div.rm-cart-products-item-info-title>a"),
+        ADD_TO_CART_BUTTON("#button-cart");
 
         private final String selector;
 
@@ -61,5 +63,17 @@ public class ProductDetailPage {
                 .replace(" ", "")
                 .replace("грн.", "");
         return Integer.parseInt(price);
+    }
+
+    public String getProductNameFromCart() {
+        return $(Selector.CART_PRODUCT_NAME.getSelector())
+                .shouldBe(visible)
+                .getText();
+    }
+
+    public void addProductToCart() {
+        $(Selector.ADD_TO_CART_BUTTON.getSelector())
+                .shouldBe(clickable)
+                .click();
     }
 }
