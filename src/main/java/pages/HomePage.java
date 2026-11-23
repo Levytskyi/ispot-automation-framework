@@ -4,7 +4,7 @@ import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.$;
 
 public class HomePage {
-    public enum Selector {
+    private enum Selector {
         AUTH_MODAL("div.top-nav-account-links-item span.d-flex"),
         AUTH_EMAIL_TAB("#email-login-tab"),
         AUTH_REGISTRATION_PAGE("a.login-popup-register"),

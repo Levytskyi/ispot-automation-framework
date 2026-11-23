@@ -5,13 +5,14 @@ import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
 public class ProductDetailPage {
-    public enum Selector {
+    private enum Selector {
         TITLE_TEXT("div.rm-product-title>h1"),
         PRODUCT_OPTION("div.hcol-attribute"),
         INCREASE_QUANTITY_BUTTON("button.rm-product-quantity-btn-plus"),
         PRODUCT_PRICE("div.rm-product-center-price"),
         CART_PRODUCT_NAME("div.rm-cart-products-item-info-title>a"),
-        ADD_TO_CART_BUTTON("#button-cart");
+        ADD_TO_CART_BUTTON("#button-cart"),
+        QUANTITY_FIELD("#input-quantity");
 
         private final String selector;
 
@@ -60,8 +61,7 @@ public class ProductDetailPage {
         String price = $(Selector.PRODUCT_PRICE.getSelector())
                 .shouldBe(visible)
                 .getText()
-                .replace(" ", "")
-                .replace("грн.", "");
+                .replaceAll("\\D", "");
         return Integer.parseInt(price);
     }
 
@@ -75,5 +75,25 @@ public class ProductDetailPage {
         $(Selector.ADD_TO_CART_BUTTON.getSelector())
                 .shouldBe(clickable)
                 .click();
+    }
+
+    public void setProductQuantity(String productQuantity) {
+        String price = $(Selector.PRODUCT_PRICE.getSelector())
+                .shouldBe(visible)
+                .getText();
+
+        $(Selector.QUANTITY_FIELD.getSelector())
+                .shouldBe(visible)
+                .setValue(productQuantity)
+                .pressEnter();
+
+        $(Selector.PRODUCT_PRICE.getSelector())
+                .shouldNotHave(exactText(price));
+    }
+
+    public String getQuantityFieldValue() {
+        return $(Selector.QUANTITY_FIELD.getSelector())
+                .shouldBe(visible)
+                .getValue();
     }
 }

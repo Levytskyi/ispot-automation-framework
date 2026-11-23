@@ -7,7 +7,7 @@ import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.*;
 
 public class ProductSearchPage {
-    public enum Selector {
+    private enum Selector {
         PRODUCT_CARD("div.product-layout"),
         PRODUCT_NAME("div.rm-module-title>a"),
         PRODUCT_PRICE("span.rm-module-price"),
@@ -124,6 +124,7 @@ public class ProductSearchPage {
         $$(Selector.PRODUCT_NAME.getSelector())
                 .shouldHave(sizeGreaterThanOrEqual(productIndex - 1))
                 .get(productIndex - 1)
+                .scrollIntoCenter()
                 .click();
     }
 }
