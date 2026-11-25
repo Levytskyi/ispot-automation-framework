@@ -24,6 +24,7 @@ public class LoadMoreProductsTest extends BaseTest {
 
         Assert.assertTrue(
                 quantityAfterLoading > quantityBeforeLoading,
-                "The quantity doesn't change");
+                "The quantity doesn't change"
+        );
     }
 }

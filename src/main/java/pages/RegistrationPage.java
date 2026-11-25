@@ -1,5 +1,7 @@
 package pages;
 
+import java.time.Duration;
+
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.$;
 
@@ -29,54 +31,74 @@ public class RegistrationPage {
     }
 
     public void clickGeneratePassword() {
-        $(Selector.PASSWORD_GENERATOR_BUTTON.getSelector()).shouldBe(clickable).click();
+        $(Selector.PASSWORD_GENERATOR_BUTTON.getSelector())
+                .shouldBe(clickable)
+                .click();
     }
 
     public void clickShowPassword() {
-        $(Selector.SHOW_PASSWORD_BUTTON.getSelector()).shouldBe(clickable).click();
+        $(Selector.SHOW_PASSWORD_BUTTON.getSelector())
+                .shouldBe(clickable)
+                .click();
     }
 
     public String getFieldValue(Selector selector) {
-        return $(selector.getSelector()).shouldNotBe(empty).getValue();
+        return $(selector.getSelector())
+                .shouldNotBe(empty)
+                .getValue();
     }
 
     public String getFieldValue(Selector selector, String previousValue) {
-        return $(selector.getSelector()).shouldNotHave(value(previousValue)).getValue();
+        return $(selector.getSelector())
+                .shouldNotHave(value(previousValue))
+                .getValue();
     }
 
-    public String getElementAttributeValue(Selector selector, String attribute) {
-        return $(selector.getSelector()).shouldBe(visible).getAttribute(attribute);
-    }
-
-    public String getElementAttributeValue(Selector selector, String attribute, String expectedPart) {
-        return $(selector.getSelector()).shouldHave(cssClass(expectedPart)).getAttribute(attribute);
-    }
-
-    public void sendValueInField(Selector selector, String value) {
-        $(selector.getSelector()).shouldBe(visible).setValue(value);
-    }
-
-    public void sendValueInField(Selector selector, String value, String previousValue) {
-        $(selector.getSelector()).shouldHave(value(previousValue)).setValue(value);
+    public void setFieldValue(Selector selector, String value) {
+        $(selector.getSelector())
+                .shouldBe(visible)
+                .setValue(value);
     }
 
     public void clickSubmit() {
-        $(Selector.SUBMIT_BUTTON.getSelector()).shouldBe(clickable).click();
+        $(Selector.SUBMIT_BUTTON.getSelector())
+                .shouldBe(clickable)
+                .click();
     }
 
-    public boolean registerAgreementIsSelected() {
-        return $(Selector.AGREEMENT_CHECKBOX.getSelector()).shouldBe(visible).isSelected();
+    public String getElementAttributeValue(Selector selector, String attribute) {
+        return $(selector.getSelector())
+                .shouldBe(visible)
+                .getAttribute(attribute);
     }
 
-    public boolean registerAgreementIsSelected(boolean isChecked) {
-        if (isChecked) {
-            return $(Selector.AGREEMENT_CHECKBOX.getSelector()).shouldNotBe(checked).isSelected();
+    public boolean isFieldErrorStyleDisplayed(Selector selector) {
+        return $(selector.getSelector())
+                .shouldBe(visible)
+                .has(cssClass("error_style"), Duration.ofSeconds(4));
+    }
+
+    public boolean isRegisterAgreementSelected() {
+        return $(Selector.AGREEMENT_CHECKBOX.getSelector())
+                .shouldBe(visible)
+                .isSelected();
+    }
+
+    public boolean isRegisterAgreementSelected(boolean previousState) {
+        if (previousState) {
+            return $(Selector.AGREEMENT_CHECKBOX.getSelector())
+                    .shouldNotBe(checked)
+                    .isSelected();
         } else {
-            return $(Selector.AGREEMENT_CHECKBOX.getSelector()).shouldBe(checked).isSelected();
+            return $(Selector.AGREEMENT_CHECKBOX.getSelector())
+                    .shouldBe(checked)
+                    .isSelected();
         }
     }
 
     public void clickRegisterAgreement() {
-        $(Selector.AGREEMENT_CHECKBOX_BUTTON.getSelector()).shouldBe(exist).click();
+        $(Selector.AGREEMENT_CHECKBOX_BUTTON.getSelector())
+                .shouldBe(exist)
+                .click();
     }
 }

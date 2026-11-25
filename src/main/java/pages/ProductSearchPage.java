@@ -29,6 +29,23 @@ public class ProductSearchPage {
         }
     }
 
+    public enum SortingOption{
+        CHEAPER_FIRST("Бюджетні спочатку"),
+        EXPENSIVE_FIRST("Дорожчі"),
+        POPULAR_FIRST("Популярні"),
+        NEWER_FIRST("Нові");
+
+        private final String sortingOption;
+
+        SortingOption(String sortingOption) {
+            this.sortingOption = sortingOption;
+        }
+
+        public String getSortingOption() {
+            return sortingOption;
+        }
+    }
+
     public List<String> getProductNamesList() {
         return $$(Selector.PRODUCT_NAME.getSelector())
                 .shouldHave(sizeGreaterThan(0))
@@ -47,23 +64,15 @@ public class ProductSearchPage {
                 .shouldHave(sizeGreaterThan(0))
                 .texts()
                 .stream()
-                .map(e -> e.replace("грн.", "").replace(" ", "").trim())
-                .map(e -> Integer.parseInt(e))
+                .map(price -> price.replaceAll("\\D", ""))
+                .map(price -> Integer.parseInt(price))
                 .toList();
     }
-
-    public void selectSortOption(String sortBy) {
-        $(Selector.SORT.getSelector()).shouldBe(clickable);
-
-        switch (sortBy) {
-            case "cheaperFirst" -> $(Selector.SORT.getSelector()).selectOption("Бюджетні спочатку");
-            case "moreExpensiveFirst" -> $(Selector.SORT.getSelector()).selectOption("Дорожчі");
-            case "morePopularFirst" -> $(Selector.SORT.getSelector()).selectOption("Популярні");
-            case "newerFirst" -> $(Selector.SORT.getSelector()).selectOption("Нові");
-            default -> throw new IllegalArgumentException("Unknown sorting option: " + sortBy);
-        }
+    public void selectSortOption(SortingOption option) {
+        $(Selector.SORT.getSelector())
+                .shouldBe(clickable)
+                .selectOption(option.getSortingOption());
     }
-
     public void addProductToWishlist(int productIndex) {
         $$(Selector.ADD_TO_WISHLIST.getSelector())
                 .shouldHave(sizeGreaterThan(productIndex - 1))
@@ -114,7 +123,7 @@ public class ProductSearchPage {
 
     public void loadMoreProducts() {
         $(Selector.LOAD_MORE.getSelector())
-                .should(visible)
+                .shouldBe(visible)
                 .scrollIntoCenter()
                 .shouldBe(clickable)
                 .click();
@@ -122,7 +131,7 @@ public class ProductSearchPage {
 
     public void openSelectedProductDetailPage(int productIndex) {
         $$(Selector.PRODUCT_NAME.getSelector())
-                .shouldHave(sizeGreaterThanOrEqual(productIndex - 1))
+                .shouldHave(sizeGreaterThan(productIndex - 1))
                 .get(productIndex - 1)
                 .scrollIntoCenter()
                 .click();

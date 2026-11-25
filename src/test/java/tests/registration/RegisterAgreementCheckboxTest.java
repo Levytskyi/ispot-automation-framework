@@ -10,21 +10,27 @@ public class RegisterAgreementCheckboxTest extends BaseTest {
 
     @Test
     public void verifyAgreementCanBeChecked() {
-        boolean expectedAgreementBeforeSelected = false;
-        boolean expectedAgreementAfterSelected = true;
-
         HomePage homePage = new HomePage();
         homePage.clickAuthModalOpen();
         homePage.clickEmailAuth();
         homePage.clickRegPage();
 
         RegistrationPage registrationPage = new RegistrationPage();
-        boolean agreementBeforeSelected = registrationPage.registerAgreementIsSelected();
-        Assert.assertEquals(agreementBeforeSelected, expectedAgreementBeforeSelected, "The agreement checkbox is checked");
+
+        boolean agreementBeforeSelected = registrationPage.isRegisterAgreementSelected();
+
+        Assert.assertFalse(
+                agreementBeforeSelected,
+                "The agreement checkbox is checked"
+        );
 
         registrationPage.clickRegisterAgreement();
 
-        boolean agreementAfterSelected = registrationPage.registerAgreementIsSelected(agreementBeforeSelected);
-        Assert.assertEquals(agreementAfterSelected, expectedAgreementAfterSelected, "The agreement checkbox is unchecked");
+        boolean agreementAfterSelected = registrationPage.isRegisterAgreementSelected(agreementBeforeSelected);
+
+        Assert.assertTrue(
+                agreementAfterSelected,
+                "The agreement checkbox is unchecked"
+        );
     }
 }

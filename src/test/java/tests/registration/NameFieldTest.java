@@ -15,8 +15,6 @@ public class NameFieldTest extends BaseTest {
         String lastName = "Tester";
         String email = "example@test.com";
         String phoneNumber = "0661111111";
-        String attributeToInspect = "class";
-        String fieldErrorStyle = "error_style";
 
         HomePage homePage = new HomePage();
         homePage.clickAuthModalOpen();
@@ -24,28 +22,20 @@ public class NameFieldTest extends BaseTest {
         homePage.clickRegPage();
 
         RegistrationPage registrationPage = new RegistrationPage();
-        registrationPage.sendValueInField(LASTNAME, lastName);
-        registrationPage.sendValueInField(EMAIL, email);
-        registrationPage.sendValueInField(PHONE, phoneNumber);
+        registrationPage.setFieldValue(LASTNAME, lastName);
+        registrationPage.setFieldValue(EMAIL, email);
+        registrationPage.setFieldValue(PHONE, phoneNumber);
         registrationPage.clickGeneratePassword();
 
-        String attributeValueBeforeSubmit = registrationPage.getElementAttributeValue(FIRSTNAME, attributeToInspect);
-
         Assert.assertFalse(
-                attributeValueBeforeSubmit.
-                        contains(fieldErrorStyle),
+                registrationPage.isFieldErrorStyleDisplayed(FIRSTNAME),
                 "The name field class attribute contains an error part"
         );
 
         registrationPage.clickSubmit();
 
         Assert.assertTrue(
-                registrationPage.
-                        getElementAttributeValue(
-                                FIRSTNAME,
-                                attributeToInspect,
-                                fieldErrorStyle).
-                        contains(fieldErrorStyle),
+                registrationPage.isFieldErrorStyleDisplayed(FIRSTNAME),
                 "The name field class attribute doesn't contain an error part"
         );
     }

@@ -23,24 +23,32 @@ public class HomePage {
     }
 
     public void clickAuthModalOpen() {
-        $(Selector.AUTH_MODAL.getSelector()).shouldBe(clickable).click();
+        $(Selector.AUTH_MODAL.getSelector())
+                .shouldBe(clickable)
+                .click();
     }
 
     public void clickEmailAuth() {
-        $(Selector.AUTH_EMAIL_TAB.getSelector()).shouldBe(clickable).click();
+        $(Selector.AUTH_EMAIL_TAB.getSelector())
+                .shouldBe(clickable)
+                .click();
     }
 
     public void clickRegPage() {
-        $(Selector.AUTH_REGISTRATION_PAGE.getSelector()).shouldBe(clickable).click();
+        $(Selector.AUTH_REGISTRATION_PAGE.getSelector())
+                .shouldBe(clickable)
+                .click();
     }
 
     public void setSearchText(String productToSearch) {
-        $(Selector.SEARCH_FIELD.getSelector()).shouldBe(visible).setValue(productToSearch);
+        $(Selector.SEARCH_FIELD.getSelector())
+                .shouldBe(visible)
+                .setValue(productToSearch);
     }
 
     public void clickSearchButton() {
-        $(Selector.SEARCH_BUTTON.getSelector()).shouldBe(clickable).click();
+        $(Selector.SEARCH_BUTTON.getSelector())
+                .shouldBe(clickable)
+                .click();
     }
-
-
 }

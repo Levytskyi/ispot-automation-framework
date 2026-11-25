@@ -8,19 +8,21 @@ import pages.ProductSearchPage;
 
 import java.util.List;
 
+import static pages.ProductSearchPage.SortingOption.*;
+
 public class ProductSortingTest extends BaseTest {
 
     @Test
     public void verifyProductsCanBeSortedByPriceAscending() {
-        String productToSearch = "Apple MacBook Neo";
-        String sortBy = "cheaperFirst";
+        String productToSearch = "iPhone 17 Pro";
 
         HomePage homePage = new HomePage();
         homePage.setSearchText(productToSearch);
         homePage.clickSearchButton();
 
         ProductSearchPage productSearchPage = new ProductSearchPage();
-        productSearchPage.selectSortOption(sortBy);
+        productSearchPage.selectSortOption(CHEAPER_FIRST);
+
         List<Integer> productsPrices = productSearchPage.getProductsPrices();
 
         Assert.assertEquals(
@@ -29,7 +31,7 @@ public class ProductSortingTest extends BaseTest {
                         .stream()
                         .sorted()
                         .toList(),
-                "The prices in <" + productsPrices + "> aren't sorted by" + sortBy
+                "The prices in <" + productsPrices + "> aren't sorted by cheaper first option"
         );
     }
 }
