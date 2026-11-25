@@ -27,7 +27,7 @@ public class ShowPasswordButtonTest extends BaseTest {
         Assert.assertEquals(
                 actualTypeBeforeClick,
                 expectedTypeBeforeClick,
-                "The actual and expected password field types don't match"
+                "Password should be hidden by default before clicking show button"
         );
 
         registrationPage.clickShowPassword();
@@ -36,7 +36,7 @@ public class ShowPasswordButtonTest extends BaseTest {
         Assert.assertEquals(
                 actualTypeAfterClick,
                 expectedTypeAfterClick,
-                "The actual and expected password field types don't match"
+                "Password should be visible after clicking show button"
         );
     }
 }

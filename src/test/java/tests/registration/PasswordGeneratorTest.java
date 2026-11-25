@@ -12,6 +12,7 @@ public class PasswordGeneratorTest extends BaseTest {
 
     @Test
     public void verifyPasswordGeneratorWorksCorrectly() {
+
         HomePage homePage = new HomePage();
         homePage.clickAuthModalOpen();
         homePage.clickEmailAuth();

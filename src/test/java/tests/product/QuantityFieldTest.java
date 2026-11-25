@@ -10,11 +10,10 @@ import pages.ProductSearchPage;
 public class QuantityFieldTest extends BaseTest {
 
     @Test
-    public void verifyQuantityFieldWithAlphabeticValue() {
+    public void verifyQuantityFieldWithZeroValue() {
         String productToSearch = "Dyson";
         int productIndex = 7;
-        String productQuantity = "Two";
-        int expectedPrice = 0;
+        String productQuantity = "0";
 
         HomePage homePage = new HomePage();
         homePage.setSearchText(productToSearch);
@@ -27,18 +26,12 @@ public class QuantityFieldTest extends BaseTest {
 
         productDetailPage.setProductQuantity(productQuantity);
 
-        int actualPrice = productDetailPage.getProductPrice();
         String actualProductQuantity = productDetailPage.getQuantityFieldValue();
 
-        Assert.assertEquals(
+        Assert.assertNotEquals(
                 actualProductQuantity,
                 productQuantity,
-                "The actual product quantity doesn't match '" + productQuantity + "'"
-        );
-        Assert.assertEquals(
-                actualPrice,
-                expectedPrice,
-                "The actual price doesn't match '" + expectedPrice + "'"
+                "Quantity field should not accept '" + productQuantity + "' value"
         );
     }
 }

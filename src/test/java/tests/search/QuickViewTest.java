@@ -25,7 +25,7 @@ public class QuickViewTest extends BaseTest {
         Assert.assertEquals(
                 quickViewProductName,
                 productName,
-                "The title on the quick view don't match the product name"
+                "The title on the quick view doesn't match the product name"
         );
     }
 }

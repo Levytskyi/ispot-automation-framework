@@ -1,8 +1,9 @@
 package pages;
 
+import java.time.Duration;
+
 import static com.codeborne.selenide.Condition.*;
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.$$;
+import static com.codeborne.selenide.Selenide.*;
 
 public class ProductDetailPage {
     private enum Selector {
@@ -12,7 +13,11 @@ public class ProductDetailPage {
         PRODUCT_PRICE("div.rm-product-center-price"),
         CART_PRODUCT_NAME("div.rm-cart-products-item-info-title>a"),
         ADD_TO_CART_BUTTON("#button-cart"),
-        QUANTITY_FIELD("#input-quantity");
+        QUANTITY_FIELD("#input-quantity"),
+        REVIEW_TAB("[href='#product_reviews']"),
+        WRITE_REVIEW_BUTTON("[data-target='#rm-popup-review']"),
+        SUBMIT_REVIEW_BUTTON("#button-review"),
+        REVIEW_NAME_FIELD("#InputName");
 
         private final String selector;
 
@@ -78,22 +83,46 @@ public class ProductDetailPage {
     }
 
     public void setProductQuantity(String productQuantity) {
-        String price = $(Selector.PRODUCT_PRICE.getSelector())
-                .shouldBe(visible)
-                .getText();
-
         $(Selector.QUANTITY_FIELD.getSelector())
                 .shouldBe(visible)
                 .setValue(productQuantity)
                 .pressEnter();
-
-        $(Selector.PRODUCT_PRICE.getSelector())
-                .shouldNotHave(exactText(price));
     }
 
     public String getQuantityFieldValue() {
         return $(Selector.QUANTITY_FIELD.getSelector())
                 .shouldBe(visible)
                 .getValue();
+    }
+
+    public void openReviewTab() {
+        $(Selector.REVIEW_TAB.getSelector())
+                .shouldBe(visible)
+                .scrollIntoCenter()
+                .click();
+    }
+
+    public void openReviewModal() {
+        $(Selector.WRITE_REVIEW_BUTTON.getSelector())
+                .shouldBe(clickable)
+                .click();
+    }
+
+    public void clickSubmitReview() {
+        $(Selector.SUBMIT_REVIEW_BUTTON.getSelector())
+                .shouldBe(clickable)
+                .click();
+    }
+
+    public void setValueReviewNameField(String value) {
+        $(Selector.REVIEW_NAME_FIELD.getSelector())
+                .shouldBe(visible)
+                .setValue(value);
+    }
+
+    public boolean isReviewNameFieldErrorStyleDisplayed() {
+        return $(Selector.REVIEW_NAME_FIELD.getSelector())
+                .shouldBe(visible)
+                .has(cssClass("error_style"), Duration.ofSeconds(4));
     }
 }

@@ -29,25 +29,27 @@ public class PasswordStrengthIndicatorTest extends BaseTest {
 
         RegistrationPage registrationPage = new RegistrationPage();
 
-        registrationPage.sendValueInField(PASSWORD, weakPassword);
+        registrationPage.setFieldValue(PASSWORD, weakPassword);
 
         Assert.assertTrue(registrationPage.getElementAttributeValue(
-                                PASSWORD_STRENGTH_INDICATOR, attributeToFind).
-                        contains(weakPasswordColor),
+                                PASSWORD_STRENGTH_INDICATOR, attributeToFind)
+                        .contains(weakPasswordColor),
                 "The password indicator didn't turn red");
 
-        registrationPage.sendValueInField(PASSWORD, mediumPassword, weakPassword);
+        registrationPage.setFieldValue(PASSWORD, mediumPassword);
 
-        Assert.assertTrue(registrationPage.getElementAttributeValue(
-                                PASSWORD_STRENGTH_INDICATOR, attributeToFind).
-                        contains(mediumPasswordColor),
+        Assert.assertTrue(
+                registrationPage
+                        .getElementAttributeValue(PASSWORD_STRENGTH_INDICATOR, attributeToFind)
+                        .contains(mediumPasswordColor),
                 "The password indicator didn't turn orange");
 
-        registrationPage.sendValueInField(PASSWORD, strongPassword, mediumPassword);
+        registrationPage.setFieldValue(PASSWORD, strongPassword);
 
-        Assert.assertTrue(registrationPage.getElementAttributeValue(
-                                PASSWORD_STRENGTH_INDICATOR, attributeToFind).
-                        contains(strongPasswordColor),
+        Assert.assertTrue(
+                registrationPage
+                        .getElementAttributeValue(PASSWORD_STRENGTH_INDICATOR, attributeToFind)
+                        .contains(strongPasswordColor),
                 "The password indicator didn't turn green");
     }
 }

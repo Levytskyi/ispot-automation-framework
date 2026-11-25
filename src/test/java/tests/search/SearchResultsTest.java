@@ -8,7 +8,7 @@ import pages.ProductSearchPage;
 
 import java.util.List;
 
-public class SearchWorkingTest extends BaseTest {
+public class SearchResultsTest extends BaseTest {
 
     @Test
     public void verifySearchResultsMatchProductToSearch() {
@@ -23,9 +23,9 @@ public class SearchWorkingTest extends BaseTest {
         List<String> products = productSearchPage.getProductNamesList();
 
         Assert.assertTrue(
-                products.
-                        stream().
-                        allMatch(e -> e.toLowerCase().contains(productToSearch.toLowerCase())),
+                products
+                        .stream()
+                        .allMatch(e -> e.toLowerCase().contains(productToSearch.toLowerCase())),
                 "Products names " + products + " don't all contain <" + productToSearch + ">"
         );
     }
