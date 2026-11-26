@@ -1,4 +1,6 @@
 # Product page test cases
+___
+[<<< Back to README](../../README.md)
 
 ___
 
@@ -79,8 +81,7 @@ ___
 - **Title:**  Verify that the Review name field validates input using Equivalence Partitioning
 - **Priority:** Low
 - **Preconditions:** The User is on the Home Page and is not logged in
-- **Test Data:** Product to search: "Starlink", Short name: "Hu", Long name: "Hubert Blaine
-  Wolfeschlegelsteinhausenbergerdorff", Valid name: "Hubert Blaine"
+- **Test Data:** Product to search: "Starlink", Short name: "Hu", Long name: "Hubert Blaine Wolfeschlegelsteinhausenbergerdorff", Valid name: "Hubert Blaine"
 
 | Steps | Actions                                             | Expected result                                                                 |
 |-------|-----------------------------------------------------|---------------------------------------------------------------------------------|
