@@ -19,8 +19,8 @@ public class PasswordGeneratorTest extends BaseTest {
         homePage.clickRegPage();
 
         RegistrationPage registrationPage = new RegistrationPage();
-        registrationPage.clickShowPassword();
         registrationPage.clickGeneratePassword();
+        registrationPage.clickShowPassword();
         String generatedPassword = registrationPage.getFieldValue(PASSWORD);
 
         registrationPage.clickGeneratePassword();
