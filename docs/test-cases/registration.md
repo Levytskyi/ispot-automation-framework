@@ -1,4 +1,6 @@
-# Registration page test cases
+# Registration page test cases  
+___
+[<<< Back to README](../../README.md)
 
 ___
 
