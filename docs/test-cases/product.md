@@ -9,7 +9,7 @@ ___
 - **Title:**  Verify that the Cart contains the selected product
 - **Priority:** Critical
 - **Preconditions:** The User is on the Home Page and is not logged in
-- **Test Data:** Product to search: "Apple AirPods 4 with Active Noise Cancellation"
+- **Test Data:** Product to search: "Apple iPhone 16 Pro Max"
 
 | Steps | Actions                                             | Expected result                                                                 |
 |-------|-----------------------------------------------------|---------------------------------------------------------------------------------|
@@ -27,7 +27,7 @@ ___
 - **Title:**  Verify that the selected product memory option can be changed
 - **Priority:** High
 - **Preconditions:** The User is on the Home Page and is not logged in
-- **Test Data:** Product to search: "Apple MacBook Neo 13 512Gb", Selected option: "256 Gb"
+- **Test Data:** Product to search: "Apple iPhone 16 Pro Max 512Gb", Selected option: "256 Gb"
 
 | Steps | Actions                                            | Expected result                                                                                     |
 |-------|----------------------------------------------------|-----------------------------------------------------------------------------------------------------|
@@ -45,7 +45,7 @@ ___
 - **Title:**  Verify that the product price changes after increasing quantity
 - **Priority:** High
 - **Preconditions:** The User is on the Home Page and is not logged in
-- **Test Data:** Product to search: "Apple MacBook Neo 13"
+- **Test Data:** Product to search: "Apple iPhone 18 Pro"
 
 | Steps | Actions                                            | Expected result                                                                   |
 |-------|----------------------------------------------------|-----------------------------------------------------------------------------------|
@@ -65,12 +65,12 @@ ___
 - **Preconditions:** The User is on the Home Page and is not logged in
 - **Test Data:** Product to search: "Dyson", Quantity value: "0"
 
-| Steps | Actions                                              | Expected result                                                                            |
-|-------|------------------------------------------------------|--------------------------------------------------------------------------------------------|
-| 1     | Enter the Product to search into the Search field    | The Search field contains the Product to search                                            |
-| 2     | Click the Search button                              | The Product search page is open with results according to the Product to search            |
-| 3     | Open the Product detail page for the seventh product | The Product detail page for the selected product is open and the quantity field contains 1 |
-| 4     | Enter the Quantity value into the Quantity field     | The product quantity is not changed                                                        |
+| Steps | Actions                                            | Expected result                                                                            |
+|-------|----------------------------------------------------|--------------------------------------------------------------------------------------------|
+| 1     | Enter the Product to search into the Search field  | The Search field contains the Product to search                                            |
+| 2     | Click the Search button                            | The Product search page is open with results according to the Product to search            |
+| 3     | Open the Product detail page for the first product | The Product detail page for the selected product is open and the quantity field contains 1 |
+| 4     | Enter the Quantity value into the Quantity field   | The product quantity is not changed                                                        |
 
 - **Automated:** [QuantityFieldTest.java](../../src/test/java/tests/product/QuantityFieldTest.java)
 

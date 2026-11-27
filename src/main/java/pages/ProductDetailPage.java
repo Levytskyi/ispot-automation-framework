@@ -1,5 +1,7 @@
 package pages;
 
+import io.qameta.allure.Step;
+
 import java.time.Duration;
 
 import static com.codeborne.selenide.Condition.*;
@@ -30,18 +32,21 @@ public class ProductDetailPage {
         }
     }
 
+    @Step("Get the Title text on the Product detail page")
     public String getTitleText() {
         return $(Selector.TITLE_TEXT.getSelector())
                 .shouldBe(visible)
                 .getText();
     }
 
+    @Step("Get the updated Title text on the Product detail page")
     public String getTitleText(String previousValue) {
         return $(Selector.TITLE_TEXT.getSelector())
                 .shouldNotHave(exactText(previousValue))
                 .getText();
     }
 
+    @Step("Select {option} product option")
     public void selectProductOption(String option) {
         $$(Selector.PRODUCT_OPTION.getSelector())
                 .findBy(exactText(option))
@@ -49,6 +54,7 @@ public class ProductDetailPage {
                 .click();
     }
 
+    @Step("Increase the product quantity by 1")
     public void increaseProductQuantity() {
         String previousPrice = $(Selector.PRODUCT_PRICE.getSelector())
                 .shouldBe(visible)
@@ -62,6 +68,7 @@ public class ProductDetailPage {
                 .shouldNotHave(exactText(previousPrice));
     }
 
+    @Step("Get the Product price")
     public int getProductPrice() {
         String price = $(Selector.PRODUCT_PRICE.getSelector())
                 .shouldBe(visible)
@@ -70,18 +77,21 @@ public class ProductDetailPage {
         return Integer.parseInt(price);
     }
 
+    @Step("Get the Product name from the Cart")
     public String getProductNameFromCart() {
         return $(Selector.CART_PRODUCT_NAME.getSelector())
                 .shouldBe(visible)
                 .getText();
     }
 
+    @Step("Add the Product to the Cart")
     public void addProductToCart() {
         $(Selector.ADD_TO_CART_BUTTON.getSelector())
                 .shouldBe(clickable)
                 .click();
     }
 
+    @Step("Enter {productQuantity} into the Quantity field")
     public void setProductQuantity(String productQuantity) {
         $(Selector.QUANTITY_FIELD.getSelector())
                 .shouldBe(visible)
@@ -89,12 +99,14 @@ public class ProductDetailPage {
                 .pressEnter();
     }
 
+    @Step("Get the Quantity field value")
     public String getQuantityFieldValue() {
         return $(Selector.QUANTITY_FIELD.getSelector())
                 .shouldBe(visible)
                 .getValue();
     }
 
+    @Step("Click the Review tab")
     public void openReviewTab() {
         $(Selector.REVIEW_TAB.getSelector())
                 .shouldBe(visible)
@@ -102,24 +114,28 @@ public class ProductDetailPage {
                 .click();
     }
 
+    @Step("Click the Write review button")
     public void openReviewModal() {
         $(Selector.WRITE_REVIEW_BUTTON.getSelector())
                 .shouldBe(clickable)
                 .click();
     }
 
+    @Step("Click the Submit review button")
     public void clickSubmitReview() {
         $(Selector.SUBMIT_REVIEW_BUTTON.getSelector())
                 .shouldBe(clickable)
                 .click();
     }
 
+    @Step("Enter {value} into the Review name field")
     public void setValueReviewNameField(String value) {
         $(Selector.REVIEW_NAME_FIELD.getSelector())
                 .shouldBe(visible)
                 .setValue(value);
     }
 
+    @Step("Check that the Review name field error style is visible")
     public boolean isReviewNameFieldErrorStyleDisplayed() {
         return $(Selector.REVIEW_NAME_FIELD.getSelector())
                 .shouldBe(visible)

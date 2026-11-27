@@ -1,6 +1,7 @@
 package tests.registration;
 
 import base.BaseTest;
+import io.qameta.allure.*;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.HomePage;
@@ -11,6 +12,10 @@ import static pages.RegistrationPage.Selector.*;
 public class NameFieldTest extends BaseTest {
 
     @Test
+    @Link(name = "TC-REG-001", url = "https://github.com/Levytskyi/ispot-automation-framework/blob/main/docs/test-cases/product.md#tc-reg-001")
+    @Feature("Registration Page")
+    @Description("Verify that the Name field displays an error style when submitted empty")
+    @Severity(SeverityLevel.NORMAL)
     public void verifyEmptyFieldStyleChanges() {
         String lastName = "Tester";
         String email = "example@test.com";

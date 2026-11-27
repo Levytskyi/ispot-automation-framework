@@ -1,6 +1,7 @@
 package tests.registration;
 
 import base.BaseTest;
+import io.qameta.allure.*;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.HomePage;
@@ -11,6 +12,10 @@ import static pages.RegistrationPage.Selector.PASSWORD;
 public class ShowPasswordButtonTest extends BaseTest {
 
     @Test
+    @Link(name = "TC-REG-005", url = "https://github.com/Levytskyi/ispot-automation-framework/blob/main/docs/test-cases/product.md#tc-reg-005")
+    @Feature("Registration Page")
+    @Description("Verify that the Show password button changes the Password field type")
+    @Severity(SeverityLevel.MINOR)
     public void verifyPasswordFieldTypeChanges() {
         String attribute = "type";
         String expectedTypeBeforeClick = "password";

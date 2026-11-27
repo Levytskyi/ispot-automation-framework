@@ -1,6 +1,7 @@
 package tests.search;
 
 import base.BaseTest;
+import io.qameta.allure.*;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.HomePage;
@@ -9,6 +10,10 @@ import pages.ProductSearchPage;
 public class QuickViewTest extends BaseTest {
 
     @Test
+    @Link(name = "TC-SRCH-003", url = "https://github.com/Levytskyi/ispot-automation-framework/blob/main/docs/test-cases/product.md#tc-srch-003")
+    @Feature("Search Page")
+    @Description("Verify that the Quick view modal opens for the selected product")
+    @Severity(SeverityLevel.MINOR)
     public void verifyQuickViewOpenedForCorrectProduct() {
         String productToSearch = "EcoFlow";
         int productIndex = 2;

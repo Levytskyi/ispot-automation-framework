@@ -1,6 +1,7 @@
 package tests.registration;
 
 import base.BaseTest;
+import io.qameta.allure.*;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.HomePage;
@@ -9,6 +10,10 @@ import pages.RegistrationPage;
 public class RegistrationAgreementCheckboxTest extends BaseTest {
 
     @Test
+    @Link(name = "TC-REG-004", url = "https://github.com/Levytskyi/ispot-automation-framework/blob/main/docs/test-cases/product.md#tc-reg-004")
+    @Feature("Registration Page")
+    @Description("Verify that the Registration agreement checkbox can be checked")
+    @Severity(SeverityLevel.NORMAL)
     public void verifyAgreementCanBeChecked() {
         HomePage homePage = new HomePage();
         homePage.clickAuthModalOpen();

@@ -1,6 +1,7 @@
 package tests.registration;
 
 import base.BaseTest;
+import io.qameta.allure.*;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.HomePage;
@@ -11,6 +12,10 @@ import static pages.RegistrationPage.Selector.*;
 public class PasswordStrengthIndicatorTest extends BaseTest {
 
     @Test
+    @Link(name = "TC-REG-003", url = "https://github.com/Levytskyi/ispot-automation-framework/blob/main/docs/test-cases/product.md#tc-reg-003")
+    @Feature("Registration Page")
+    @Description("Verify that the password strength indicator changes according to the password complexity")
+    @Severity(SeverityLevel.MINOR)
     public void verifyStrengthIndicatorChanges() {
         String attributeToFind = "style";
 

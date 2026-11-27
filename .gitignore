@@ -13,3 +13,6 @@ test-output/
 *.ipr
 
 .DS_Store
+
+docs/allure-report/
+.allure/

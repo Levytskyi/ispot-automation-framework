@@ -1,6 +1,7 @@
 package tests.product;
 
 import base.BaseTest;
+import io.qameta.allure.*;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.HomePage;
@@ -10,6 +11,10 @@ import pages.ProductSearchPage;
 public class ReviewTest extends BaseTest {
 
     @Test
+    @Link(name = "TC-PROD-005", url = "https://github.com/Levytskyi/ispot-automation-framework/blob/main/docs/test-cases/product.md#tc-prod-005")
+    @Feature("Product Page")
+    @Description("Verify that the Review name field validates input using Equivalence Partitioning")
+    @Severity(SeverityLevel.TRIVIAL)
     public void verifyNameFieldEquivalencePartitioning() {
         String productToSearch = "Starlink";
         int productIndex = 2;

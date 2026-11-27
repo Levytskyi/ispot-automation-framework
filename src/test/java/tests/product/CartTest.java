@@ -1,6 +1,7 @@
 package tests.product;
 
 import base.BaseTest;
+import io.qameta.allure.*;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.HomePage;
@@ -10,8 +11,12 @@ import pages.ProductSearchPage;
 public class CartTest extends BaseTest {
 
     @Test
+    @Link(name = "TC-PROD-001", url = "https://github.com/Levytskyi/ispot-automation-framework/blob/main/docs/test-cases/product.md#tc-prod-001")
+    @Feature("Product Page")
+    @Description("Verify that the Cart contains the selected product")
+    @Severity(SeverityLevel.CRITICAL)
     public void verifyCartContainsSelectedProduct() {
-        String productToSearch = "Apple AirPods 4 with Active Noise Cancellation";
+        String productToSearch = "Apple iPhone 16 Pro Max";
         int productIndex = 2;
 
         HomePage homePage = new HomePage();
