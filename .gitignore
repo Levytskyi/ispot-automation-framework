@@ -14,5 +14,5 @@ test-output/
 
 .DS_Store
 
-docs/allure-report/
+allure-resalts/
 .allure/
